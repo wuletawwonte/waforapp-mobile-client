@@ -3,28 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Mobile Waforapp View</title>
+  <title>WaForApp</title>
+
   <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="dist/css/AdminLTE.css">
 
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    <link rel="icon" href="dist/img/favicon.ico" type="image/x-icon">
 
-</head>
-<body class="hold-transition skin-white sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
+<body class="hold-transition skin-black layout-top-nav" ng-app="waforapp">
+<div class="wrapper"> 
 
   <header class="main-header">
     <nav class="navbar navbar-static-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
-          <a href="http://waforapp.wuletaw/" class="navbar-brand">WaForApp</a>
+          <span class="navbar-brand">WaForApp</span>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-ellipsis-v"></i>
           </button>
         </div>
 
@@ -64,10 +65,60 @@
           <ul class="nav navbar-nav">
             <!-- Messages: style can be found in dropdown.less-->
 
-            
-              <li><a href="http://waforapp.wuletaw/welcome/loginpage">Login</a></li>
+                          
+              <!-- Notifications Menu -->
+              <li class="dropdown notifications-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="label label-warning">10</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 10 notifications</li>
+                  <li>
+                    <!-- Inner Menu: contains the notifications -->
+                    <ul class="menu">
+                      <li><!-- start notification -->
+                        <a href="#">
+                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                        </a>
+                      </li>
+                      <!-- end notification -->
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">View all</a></li>
+                </ul>
+              </li>
+                            <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                      </ul>
+                  <img src="http://waforapp.wuletaw/assets/img/profile_pictures/45247893_2152860218262103_798568723953745920_n.jpg" class="user-image" alt="User Image">
+                  <span class="hidden-xs">Tekeste Getnet</span>
+
+                </a>
+                <ul class="dropdown-menu">
+
+                  <li class="user-header">
+                    <img src="http://waforapp.wuletaw/assets/img/profile_pictures/45247893_2152860218262103_798568723953745920_n.jpg" class="img-circle" alt="User Image">
+
+                    <p>
+                      Tekeste Getnet - Student                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="http://waforapp.wuletaw/welcome/profile" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="http://waforapp.wuletaw/users/logout/homepage" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+                    </ul>
         </div>
         <!-- /.navbar-custom-menu -->
       </div>
@@ -75,179 +126,15 @@
     </nav>
   </header>
   <!-- Full Width Column -->
-  <div class="content-wrapper">
-    <div class="container">
+  
 
 
 
-<section class="content">
-
-    <div class="row">
-
-    <div class="col-md-4 col-sm-4">
-      <div class="box">
-              <div class="box-header with-border">
-                <h3 class="box-title">Latest Forums</h3>
-
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                <ul class="products-list product-list-in-box">
-
-                                  <li class="item">
-                    <div class="product-img">
-                      <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">What is computer science?                        <span class="label label-warning pull-right">$1800</span></a>
-                      <span class="product-description">
-                            Samsung 32" 1080p 60Hz LED Smart HDTV.
-                          </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                                    <li class="item">
-                    <div class="product-img">
-                      <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">በሰው ፡ ፍቅር ፡ የወደቀ ፡ እንኳን&#8230;                       <span class="label label-warning pull-right">$1800</span></a>
-                      <span class="product-description">
-                            Samsung 32" 1080p 60Hz LED Smart HDTV.
-                          </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                                    <li class="item">
-                    <div class="product-img">
-                      <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">How Wonderful it is to worship God&#8230;                        <span class="label label-warning pull-right">$1800</span></a>
-                      <span class="product-description">
-                            Samsung 32" 1080p 60Hz LED Smart HDTV.
-                          </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  
-                </ul>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer text-center">
-                <a href="http://waforapp.wuletaw/welcome/forums" class="uppercase">View All Forums</a>
-              </div>
-              <!-- /.box-footer -->
-            </div>
-          </div>
+  <div ng-view id="manContent"></div>  
 
 
 
 
-
-        <div class="col-md-8 col-sm-8">
-            <div class="box" style="border-radius: 0; padding-top: 8px;">
-              <div class="box-body">
-                  <!-- Post -->
-                                    <div class="post">
-                    <div class="user-block">
-                      <img class="img-circle img-bordered-sm" src="http://waforapp.wuletaw/assets/img/profile_pictures/icon.png" alt="user image">
-                          <span class="username">
-                            <a href="#">Wuletaw Wonte</a>
-                          </span>
-                      <span class="description">Student council - 2019-06-10 13:55:09</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <h5><a href="http://waforapp.wuletaw/welcome/notice/2">The key to Win a Battle</a></h5>
-                    <p>
-                      The key to winning a battle was knowing both your enemy and yourself. “If you know yourself but not the enemy, for every victory gained you will also suffer a defeat. If you know neither the enemy nor yourself, you will succumb in every battle.”                   </p>
-                    <ul class="list-inline">
-                      <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                      </li>
-                      <li class="pull-right">
-                        <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                          (5)</a></li>
-                    </ul>
-
-                    <form method="POST" action="http://waforapp.wuletaw/welcome/comment" class="form-horizontal" hidden>
-                      <div class="form-group margin-bottom-none">
-                        <input type="text" name="nid" value="2" hidden>
-                        <div class="col-sm-10">
-                          <input class="form-control input-sm" name="comment_content" placeholder="Comment" >
-                        </div>
-                        <div class="col-sm-2">
-                          <button type="submit" class="btn btn-info pull-right btn-block btn-sm">Comment</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.post -->
-                                    <div class="post">
-                    <div class="user-block">
-                      <img class="img-circle img-bordered-sm" src="http://waforapp.wuletaw/assets/img/profile_pictures/avatar2.png" alt="user image">
-                          <span class="username">
-                            <a href="#">Alem Zewdu</a>
-                          </span>
-                      <span class="description">Student council - 2019-06-10 12:07:34</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <h5><a href="http://waforapp.wuletaw/welcome/notice/1">Dear Customer, your dept is fully covered. ....</a></h5>
-                    <p>
-                      Many of you might have seen a message in your phone from tele saying 
-"Dear Customer, your dept is fully covered. ..." 
-How sweet is it to see this message? I feel so much relief just by seeing this message. Because this message means that after all this payments I&#8230;                    </p>
-                    <ul class="list-inline">
-                      <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                      </li>
-                      <li class="pull-right">
-                        <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                          (5)</a></li>
-                    </ul>
-
-                    <form method="POST" action="http://waforapp.wuletaw/welcome/comment" class="form-horizontal" hidden>
-                      <div class="form-group margin-bottom-none">
-                        <input type="text" name="nid" value="1" hidden>
-                        <div class="col-sm-10">
-                          <input class="form-control input-sm" name="comment_content" placeholder="Comment" >
-                        </div>
-                        <div class="col-sm-2">
-                          <button type="submit" class="btn btn-info pull-right btn-block btn-sm">Comment</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.post -->
-                  
-
-              </div>
-            </div>
-    </div>
-
-
-
-
-    </div>
-
-
-
-
-      </section>
-      <!-- /.content -->
-
-
-
-
-
-
-    </div>
-    <!-- /.container -->
-
-  </div>
-  <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="container">
       <div class="pull-right hidden-xs">
@@ -263,15 +150,13 @@ How sweet is it to see this message? I feel so much relief just by seeing this m
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="dist/js/dist/adminlte.min.js"></script>
+<script src="dist/js/dist/demo.js"></script>
 
-<script src="dist/js/adminlte.min.js"></script>
-<script src="dist/js/demo.js"></script>
+<script src="dist/js/angular.min.js"></script>
+<script src="dist/js/angular-route.min.js"></script>
+<script src="app.js"></script>
 
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
+
 </body>
 </html>
