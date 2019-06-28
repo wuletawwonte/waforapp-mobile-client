@@ -1,0 +1,23 @@
+
+
+
+
+  <div class="login-logo" style="margin-bottom: 0px; padding-top: 150px;background-image: url('./dist/img/loginbg.jpg');background-position: center;background-repeat: no-repeat;">
+    <span style="color: white;"><b style="color: orange;">Wa</b>ForApp</span><br/><br/>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+  	  {{errormessage}}
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" ng-model="username" placeholder="Username">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" ng-model="password" placeholder="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
+      <button ng-click="login()" class="btn btn-warning btn-block btn-flat">Sign In</button>
+
+  </div>
+  <!-- /.login-box-body -->
