@@ -22,7 +22,7 @@ app.config(function($routeProvider) {
 	})
 });
 
-app.service('userService', function() {
+app.service('userService', function($http) {
 	var user;
 	var loggedIn = false;
 	this.setUser = function (data) {
