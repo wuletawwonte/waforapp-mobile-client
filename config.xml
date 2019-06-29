@@ -17,11 +17,15 @@
       Wuletaw Wonte
   </author>
 
-
+  <preference name="cordova.plugins.diagnostic.modules" value="WIFI" />
   <preference name="target-device" value="android" />  
   <preference name="fullscreen" value="true" /> 
-  <preference name="SplashMaintainAspectRatio" value="true"/>
-  <preference name="SplashShowOnlyFirstTime" value="true"/>
+  <preference name="SplashMaintainAspectRatio" value="false"/>
+  <preference name="SplashShowOnlyFirstTime" value="false"/>
+  <preference name="AutoHideSplashScreen" value="true" />
+  <preference name="SplashScreenDelay" value="3000" />
+
+
   <icon density="ldpi" platform="android" src="./res/icon/android/ldpi.png"/>
   <icon density="mdpi" platform="android" src="./res/icon/android/mdpi.png"/>
   <icon density="hdpi" platform="android" src="./res/icon/android/hdpi.png"/>
