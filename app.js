@@ -25,23 +25,24 @@ app.config(function($routeProvider) {
 
 app.controller('loginCtrl', function($scope, $location, $http) {
 	$scope.login = function() {
-		var username = $scope.username;
-		var password = $scope.password;
-		$http({
-			url: 'http://192.168.43.207/users/m_login',
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			data: 'username='+username+'&password='+password
-		}).then(function($response) {
-			// console.log($response.data);
-			if($response.data.status == 'loggedin'){
-				$location.path('/home');
-			} else {
-				$scope.errormessage = $response;
-			}
-		});
+		// var username = $scope.username;
+		// var password = $scope.password;
+		// $http({
+		// 	url: 'http://192.168.43.207/users/m_login',
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/x-www-form-urlencoded'
+		// 	},
+		// 	data: 'username='+username+'&password='+password
+		// }).then(function($response) {
+		// 	// console.log($response.data);
+		// 	if($response.data.status == 'loggedin'){
+		// 		$location.path('/home');
+		// 	} else {
+		// 		$scope.errormessage = $response;
+		// 	}
+		// });
+		$location.path('/home');
 	}
 });
 
