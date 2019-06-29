@@ -20,34 +20,60 @@ app.config(function($routeProvider) {
 	}).otherwise({
 		template: '404'
 	})
-
 });
 
-app.controller('loginCtrl', function($scope, $location, $http) {
+app.service('userService', function() {
+	var user;
+	var loggedIn = false;
+	this.setUser = function (data) {
+		user = data;
+	}
+	this.getUser = function() {
+		return user;
+	}
+	this.userLoggedIn = function() {
+		loggedIn = true;
+	}
+	this.isUserLoggedIn = function() {
+		return loggedIn;
+	}
+});
+
+app.controller('loginCtrl', function($scope, $location, $http, userService) {
 	$scope.login = function() {
 		var username = $scope.username;
 		var password = $scope.password;
 		$http({
-			url: 'http://192.168.43.207/users/m_login',
+			url: 'http://waforapp.wuletaw/users/m_login',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
 			data: 'username='+username+'&password='+password
 		}).then(function($response) {
-			// console.log($response.data);
 			if($response.data.status == 'loggedin'){
+				userService.userLoggedIn();
+				userService.setUser($response.data);
 				$location.path('/home');
 			} else {
 				$scope.errormessage = $response;
 			}
 		});
-		// $location.path('/home');
 	}
 });
 
-app.controller('homeCtrl', function($scope, $location) {
-	$scope.data = "Hellow There";
+app.controller('homeCtrl', function($scope, $http, $location, userService) {
+	$scope.user = userService.getUser();
+	$http({
+		url: 'http://waforapp.wuletaw/users/m_notices',
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
+	}).then(function($response) {
+		$scope.notices = $response.data;
+	});
+
 });
 
 
