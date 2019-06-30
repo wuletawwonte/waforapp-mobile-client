@@ -1,4 +1,99 @@
 
+  <header class="main-header">
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a class="sidebar-toggle" id="sidebar-toggler" data-toggle="push-menu" data-slide="false" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-ellipsis-v"></i>
+              <span class="hidden-xs"><?= $this->session->userdata('name'); ?></span>
+            </a>
+            <ul class="dropdown-menu" style="margin-right: -15px;width: 30px;">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">Ekele Ekele </a>
+                  </li>
+                  <li>
+                    <a href="" ng-click="signout();">Signout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+    
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img ng-src="http://waforapp.wuletaw/assets/img/profile_pictures/{{user.avatar}}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>{{user.name}}</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>    
+      <ul class="sidebar-menu">
+        <li <?php if($active_menu == 'dashboard') echo "class='active'" ?> 
+          <a href="#/home">
+            <i class="fa fa-bell"></i> <span>Notice</span>
+          </a>
+        </li>
+        <li <?php if($active_menu == 'students') echo "class='active'" ?>
+          <a href="#/forums">
+            <i class="fa fa-users"></i> <span>Forum</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- =============================================== -->  
+
+
 
 <br>
 <div class="col-md-8 col-sm-8">	        
@@ -10,46 +105,18 @@
   		</div>
   		<div class="box-body">
 
-        <div class="callout">
-          <h4>Tip!</h4>
-          <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a sidebar!</p>
-        </div> 
-
 		<ul class="products-list product-list-in-box">
-				                <li class="item">
+			<li class="item" ng-repeat="x in forums">
               <div class="product-img">
-                <a href=""> <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image"></a>
+                <a href=""> <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image" /></a>
 				  </div>
               <div class="product-info">
-                <a href="http://waforapp.wuletaw/welcome/forum_details/3" class="product-title">What is computer science?</a>
-                  <span class=" pull-right">2019-06-14 15:43:35</span>
-                <span class="product-description">
-                	Tekeste Getnet	                        </span>
+                <a href="http://waforapp.wuletaw/welcome/forum_details/3" class="product-title">{{x.forum_question}}</a>
+                  <span class="product-description pull-right">{{x.date_asked}}</span>
+                <span class="product-description">{{x.first_name+' '+x.middle_name}}</span>
               </div>
             </li>
-            	                <li class="item">
-              <div class="product-img">
-                <a href=""> <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image"></a>
-				  </div>
-              <div class="product-info">
-                <a href="http://waforapp.wuletaw/welcome/forum_details/2" class="product-title">በሰው ፡ ፍቅር ፡ የወደቀ ፡ እንኳን ፡ ይሰጥ ፡ የለ ፡ ወይ ፡ እራሱን(Betty Tezera)</a>
-                  <span class=" pull-right">2019-06-13 12:25:29</span>
-                <span class="product-description">
-                	Wuletaw Wonte	                        </span>
-              </div>
-            </li>
-            	                <li class="item">
-              <div class="product-img">
-                <a href=""> <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image"></a>
-				  </div>
-              <div class="product-info">
-                <a href="http://waforapp.wuletaw/welcome/forum_details/1" class="product-title">How Wonderful it is to worship God from the bottom of our hearts?</a>
-                  <span class=" pull-right">2019-06-13 12:25:29</span>
-                <span class="product-description">
-                	Tekeste Getnet	                        </span>
-              </div>
-            </li>
-            	                <!-- /.item -->
+            <!-- /.item -->
           </ul>
 
 

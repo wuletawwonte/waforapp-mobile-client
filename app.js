@@ -44,7 +44,7 @@ app.controller('loginCtrl', function($scope, $location, $http, userService) {
 		var username = $scope.username;
 		var password = $scope.password;
 		$http({
-			url: 'http://waforapp.wuletaw/users/m_login',
+			url: 'http://192.168.43.207/users/m_login',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -65,7 +65,7 @@ app.controller('loginCtrl', function($scope, $location, $http, userService) {
 app.controller('homeCtrl', function($scope, $http, $location, userService) {
 	$scope.user = userService.getUser();
 	$http({
-		url: 'http://waforapp.wuletaw/users/m_notices',
+		url: 'http://192.168.43.207/users/m_notices',
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
@@ -73,7 +73,18 @@ app.controller('homeCtrl', function($scope, $http, $location, userService) {
 	}).then(function($response) {
 		$scope.notices = $response.data;
 	});
+});
 
+app.controller('forumsCtrl', function($scope, $http, $location, userService) {
+	$http({
+		url: 'http://192.168.43.207/users/m_forums',
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
+	}).then(function($response) {
+		$scope.forums = $response.data;
+	});	
 });
 
 
