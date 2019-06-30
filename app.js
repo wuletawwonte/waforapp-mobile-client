@@ -56,7 +56,7 @@ app.controller('loginCtrl', function($scope, $location, $http, userService) {
 				userService.setUser($response.data);
 				$location.path('/home');
 			} else {
-				$scope.errormessage = $response;
+				$scope.errormessage = "Username or password not Correct";
 			}
 		});
 	}

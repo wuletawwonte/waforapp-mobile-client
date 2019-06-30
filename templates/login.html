@@ -2,12 +2,12 @@
 
 
 
-  <div class="login-logo" style="margin-bottom: 0px; padding-top: 150px;background-image: url('./img/loginbg.jpg');background-position: center;background-repeat: no-repeat;">
+  <div class="login-logo" style="margin-bottom: 0px; padding-top: 150px;background: url('./img/loginbg.jpg') no-repeat center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
     <span style="color: white;"><b style="color: orange;">Wa</b>ForApp</span><br/><br/>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-  	  {{errormessage}}
+      <label class="control-label" style="text-align: center">{{errormessage}}</label>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" ng-model="username" placeholder="Username">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
