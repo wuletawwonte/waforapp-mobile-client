@@ -19,19 +19,17 @@
 
   <preference name="cordova.plugins.diagnostic.modules" value="WIFI" />
   <preference name="target-device" value="android" />  
+  <preference name="android-minSdkVersion" value="14" />    
   <preference name="fullscreen" value="false" />
 
-  <preference name="ShowSplashScreen" value="true"/>
-  <preference name="SplashScreen" value="screen" />
-  <preference name="SplashMaintainAspectRatio" value="false"/>
-  <preference name="SplashShowOnlyFirstTime" value="false"/>
-  <preference name="AutoHideSplashScreen" value="true" />
-  <preference name="FadeSplashScreenDuration" value="300" />
-  <preference name="SplashScreenDelay" value="10000" />
-  <feature name="SplashScreen" > 
-    <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-    <param name="onload" value="true" />
-  </feature>
+  <plugin name="cordova-plugin-splashscreen" source="npm">
+        <preference name="SplashScreen"               value="splash" />
+        <preference name="AutoHideSplashScreen"       value="true" />
+        <preference name="SplashScreenDelay"          value="5000" />
+        <preference name="SplashMaintainAspectRatio"  value="true" />
+        <preference name="FadeSplashScreen"           value="false"/>
+        <preference name="ShowSplashScreenSpinner"    value="false" />
+  </plugin>  
 
   <icon density="ldpi" platform="android" src="./res/icon/android/ldpi.png"/>
   <icon density="mdpi" platform="android" src="./res/icon/android/mdpi.png"/>
@@ -39,12 +37,12 @@
   <icon density="xhdpi" platform="android" src="./res/icon/android/xhdpi.png"/>
   <icon density="xxhdpi" platform="android" src="./res/icon/android/xxhdpi.png"/>
   <icon density="xxxhdpi" platform="android" src="./res/icon/android/xxxhdpi.png"/>
-  <splash qualifier="ldpi" platform="android" src="./res/screen/android/splash-ldpi.png"/>
-  <splash qualifier="mdpi" platform="android" src="./res/screen/android/splash-mdpi.png"/>
-  <splash qualifier="hdpi" platform="android" src="./res/screen/android/splash-hdpi.png"/>
-  <splash qualifier="xhdpi" platform="android" src="./res/screen/android/splash-xhdpi.png"/>
-  <splash qualifier="xxhdpi" platform="android" src="./res/screen/android/splash-xxhdpi.png"/>
-  <splash qualifier="xxxhdpi" platform="android" src="./res/screen/android/splash-xxxhdpi.png"/>
+  <splash density="ldpi" platform="android" src="./res/screen/android/splash-ldpi.png"/>
+  <splash density="mdpi" platform="android" src="./res/screen/android/splash-mdpi.png"/>
+  <splash density="hdpi" platform="android" src="./res/screen/android/splash-hdpi.png"/>
+  <splash density="xhdpi" platform="android" src="./res/screen/android/splash-xhdpi.png"/>
+  <splash density="xxhdpi" platform="android" src="./res/screen/android/splash-xxhdpi.png"/>
+  <splash density="xxxhdpi" platform="android" src="./res/screen/android/splash-xxxhdpi.png"/>
 
   <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
   <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
