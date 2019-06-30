@@ -73,6 +73,9 @@ app.controller('homeCtrl', function($scope, $http, $location, userService) {
 	}).then(function($response) {
 		$scope.notices = $response.data;
 	});
+	$scope.signout = function() {
+		$location.path('/');
+	}
 });
 
 app.controller('forumsCtrl', function($scope, $http, $location, userService) {

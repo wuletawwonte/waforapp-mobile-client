@@ -27,7 +27,7 @@
   <preference name="SplashShowOnlyFirstTime" value="false"/>
   <preference name="AutoHideSplashScreen" value="true" />
   <preference name="FadeSplashScreenDuration" value="300" />
-  <preference name="SplashScreenDelay" value="5000" />
+  <preference name="SplashScreenDelay" value="10000" />
   <feature name="SplashScreen" > 
     <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
     <param name="onload" value="true" />
@@ -39,15 +39,13 @@
   <icon density="xhdpi" platform="android" src="./res/icon/android/xhdpi.png"/>
   <icon density="xxhdpi" platform="android" src="./res/icon/android/xxhdpi.png"/>
   <icon density="xxxhdpi" platform="android" src="./res/icon/android/xxxhdpi.png"/>
-  <splash density="port-ldpi" platform="android" src="./res/screen/android/splash-port-ldpi.png"/>
-  <splash density="port-mdpi" platform="android" src="./res/screen/android/splash-port-mdpi.png"/>
-  <splash density="port-hdpi" platform="android" src="./res/screen/android/splash-port-hdpi.png"/>
-  <splash density="port-xhdpi" platform="android" src="./res/screen/android/splash-port-xhdpi.png"/>
-  <splash density="port-xxhdpi" platform="android" src="./res/screen/android/splash-port-xxhdpi.png"/>
-  <splash density="port-xxxhdpi" platform="android" src="./res/screen/android/splash-port-xxxhdpi.png"/>
+  <splash qualifier="ldpi" platform="android" src="./res/screen/android/splash-ldpi.png"/>
+  <splash qualifier="mdpi" platform="android" src="./res/screen/android/splash-mdpi.png"/>
+  <splash qualifier="hdpi" platform="android" src="./res/screen/android/splash-hdpi.png"/>
+  <splash qualifier="xhdpi" platform="android" src="./res/screen/android/splash-xhdpi.png"/>
+  <splash qualifier="xxhdpi" platform="android" src="./res/screen/android/splash-xxhdpi.png"/>
+  <splash qualifier="xxxhdpi" platform="android" src="./res/screen/android/splash-xxxhdpi.png"/>
 
-
-  <access origin="*"/>
   <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
   <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
   <plugin name="cordova-plugin-whitelist" version="1" />
