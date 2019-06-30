@@ -44,7 +44,7 @@
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li>
-                    <a href="#">Ekele Ekele </a>
+                    <a href="">{{user.name}}</a>
                   </li>
                   <li>
                     <a href="" ng-click="signout();">Signout</a>
@@ -69,7 +69,7 @@
         <div class="pull-left image">
           <img ng-src="http://192.168.43.207/assets/img/profile_pictures/{{user.avatar}}" class="img-circle" alt="User Image">
         </div>
-        <div class="pull-left info">
+        <div class="pull-left info" style="color: white;">
           <p>{{user.name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -101,17 +101,17 @@
   		<div class="box-header">
   			<h3 class="box-title">Top Questions</h3>
   		
-				<a href="http://waforapp.wuletaw/welcome/ask_question_view" class="btn btn-lg btn-info pull-right">Ask Question</a>        		
+				<a href="http://192.168.43.207/welcome/ask_question_view" class="btn btn-lg btn-info pull-right">Ask Question</a>        		
   		</div>
   		<div class="box-body">
 
 		<ul class="products-list product-list-in-box">
 			<li class="item" ng-repeat="x in forums">
               <div class="product-img">
-                <a href=""> <img src="http://waforapp.wuletaw/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image" /></a>
+                <a href=""> <img src="http://192.168.43.207/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image" /></a>
 				  </div>
               <div class="product-info">
-                <a href="http://waforapp.wuletaw/welcome/forum_details/3" class="product-title">{{x.forum_question}}</a>
+                <a href="http://192.168.43.207/welcome/forum_details/3" class="product-title">{{x.forum_question}}</a>
                   <span class="product-description pull-right">{{x.date_asked}}</span>
                 <span class="product-description">{{x.first_name+' '+x.middle_name}}</span>
               </div>

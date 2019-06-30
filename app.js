@@ -1,5 +1,5 @@
 
-var app = angular.module('waforapp', ['ngRoute']);
+var app = angular.module('waforapp', ['ngRoute', 'ngStorage']);
 
 app.config(function($routeProvider) { 
 	$routeProvider.when('/', {
@@ -22,14 +22,13 @@ app.config(function($routeProvider) {
 	})
 });
 
-app.service('userService', function($http) {
-	var user;
+app.service('userService', function($http, $localStorage) {
 	var loggedIn = false;
 	this.setUser = function (data) {
-		user = data;
+		$localStorage.user = data;
 	}
 	this.getUser = function() {
-		return user;
+		return $localStorage.user;
 	}
 	this.userLoggedIn = function() {
 		loggedIn = true;
@@ -79,6 +78,7 @@ app.controller('homeCtrl', function($scope, $http, $location, userService) {
 });
 
 app.controller('forumsCtrl', function($scope, $http, $location, userService) {
+	$scope.user = userService.getUser();
 	$http({
 		url: 'http://192.168.43.207/users/m_forums',
 		method: 'POST',
