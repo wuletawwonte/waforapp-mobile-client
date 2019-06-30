@@ -3,6 +3,13 @@ var app = angular.module('waforapp', ['ngRoute', 'ngStorage']);
 
 app.config(function($routeProvider) { 
 	$routeProvider.when('/', {
+		resolve: {
+			check: function($localStorage, $location) {
+				if($localStorage.user) {
+					$location.path('/home');
+				}
+			}
+		},
 		templateUrl: './templates/login.html',
 		controller: 'loginCtrl'
 	}).when('/home', {
@@ -23,18 +30,14 @@ app.config(function($routeProvider) {
 });
 
 app.service('userService', function($http, $localStorage) {
-	var loggedIn = false;
+	this.usersignout = function() {
+		delete $localStorage.user;
+	}
 	this.setUser = function (data) {
 		$localStorage.user = data;
 	}
 	this.getUser = function() {
 		return $localStorage.user;
-	}
-	this.userLoggedIn = function() {
-		loggedIn = true;
-	}
-	this.isUserLoggedIn = function() {
-		return loggedIn;
 	}
 });
 
@@ -51,7 +54,6 @@ app.controller('loginCtrl', function($scope, $location, $http, userService) {
 			data: 'username='+username+'&password='+password
 		}).then(function($response) {
 			if($response.data.status == 'loggedin'){
-				userService.userLoggedIn();
 				userService.setUser($response.data);
 				$location.path('/home');
 			} else {
@@ -73,6 +75,7 @@ app.controller('homeCtrl', function($scope, $http, $location, userService) {
 		$scope.notices = $response.data;
 	});
 	$scope.signout = function() {
+		userService.usersignout();
 		$location.path('/');
 	}
 });
@@ -88,6 +91,10 @@ app.controller('forumsCtrl', function($scope, $http, $location, userService) {
 	}).then(function($response) {
 		$scope.forums = $response.data;
 	});	
+	$scope.signout = function() {
+		userService.usersignout();
+		$location.path('/');
+	}	
 });
 
 
