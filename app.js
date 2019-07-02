@@ -27,9 +27,9 @@ app.config(function($routeProvider) {
 	}).when('/forumDetails', {
 		templateUrl: './templates/forumDetails.html',
 		controller: 'forumDetailsCtrl'
-	}).when('/answer', {
-		templateUrl: './templates/answer.html',
-		controller: 'answerCtrl'
+	}).when('/election', {
+		templateUrl: './templates/election.html',
+		controller: 'electionCtrl'
 	}).otherwise({
 		template: '404'
 	})
@@ -63,7 +63,7 @@ app.controller('loginCtrl', function($scope, $location, $http, userService) {
 		var username = $scope.username;
 		var password = $scope.password;
 		$http({
-			url: 'http://192.168.43.207/users/m_login',
+			url: 'http://waforapp.wuletaw/users/m_login',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -83,7 +83,7 @@ app.controller('loginCtrl', function($scope, $location, $http, userService) {
 app.controller('homeCtrl', function($scope, $http, $location, userService) {
 	$scope.user = userService.getUser();
 	$http({
-		url: 'http://192.168.43.207/users/m_notices',
+		url: 'http://waforapp.wuletaw/users/m_notices',
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
@@ -105,7 +105,7 @@ app.controller('homeCtrl', function($scope, $http, $location, userService) {
 app.controller('forumsCtrl', function($scope, $http, $location, userService) {
 	$scope.user = userService.getUser();
 	$http({
-		url: 'http://192.168.43.207/users/m_forums',
+		url: 'http://waforapp.wuletaw/users/m_forums',
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
@@ -132,7 +132,7 @@ app.controller('noticeCtrl', function($scope, $http, $location, userService) {
 
 	function getNoticeDetails() {
 		$http({
-			url: 'http://192.168.43.207/users/m_notice',
+			url: 'http://waforapp.wuletaw/users/m_notice',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -150,7 +150,7 @@ app.controller('noticeCtrl', function($scope, $http, $location, userService) {
 		var comment_content = $scope.comment_content;
 
 		$http({
-			url: 'http://192.168.43.207/users/m_comment',
+			url: 'http://waforapp.wuletaw/users/m_comment',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -159,6 +159,11 @@ app.controller('noticeCtrl', function($scope, $http, $location, userService) {
 		}).then(function($response) {
 			getNoticeDetails();
 		});
+	}
+
+	$scope.signout = function() {
+		userService.usersignout();
+		$location.path('/');
 	}
 
 });
@@ -171,7 +176,7 @@ app.controller('askQuestionCtrl', function($scope, $http, $location, userService
 		var forumQuestion = $scope.forum_question;
 
 		$http({
-			url: 'http://192.168.43.207/users/m_post_question',
+			url: 'http://waforapp.wuletaw/users/m_post_question',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -181,6 +186,10 @@ app.controller('askQuestionCtrl', function($scope, $http, $location, userService
 			$location.path('/forums');
 		});
 	}
+	$scope.signout = function() {
+		userService.usersignout();
+		$location.path('/');
+	}
 });
 
 app.controller('forumDetailsCtrl', function($scope, $http, $location, userService) {
@@ -189,7 +198,7 @@ app.controller('forumDetailsCtrl', function($scope, $http, $location, userServic
 
 	function getForumDetails() {
 		$http({
-			url: 'http://192.168.43.207/users/m_question_details',
+			url: 'http://waforapp.wuletaw/users/m_question_details',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -206,7 +215,7 @@ app.controller('forumDetailsCtrl', function($scope, $http, $location, userServic
 	$scope.postAnswer = function() {
 		var answer_content = $scope.answer_content;
 		$http({
-			url: 'http://192.168.43.207/users/m_answer_forum_question',
+			url: 'http://waforapp.wuletaw/users/m_answer_forum_question',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -217,6 +226,35 @@ app.controller('forumDetailsCtrl', function($scope, $http, $location, userServic
 		});		
 	};
 
+	$scope.signout = function() {
+		userService.usersignout();
+		$location.path('/');
+	}
+});
+
+
+app.controller('electionCtrl', function($scope, $location, $http, userService) {
+	$scope.user = userService.getUser();
+
+	$http({
+		url: 'http://waforapp.wuletaw/users/m_election',
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		data: 'user_id='+$scope.user['user_id']
+	}).then(function($response) {
+		$scope.today = $response.data.today;
+		$scope.election = $response.data.election;
+	});		
+
+
+
+
+	$scope.signout = function() {
+		userService.usersignout();
+		$location.path('/');
+	}
 });
 
 
