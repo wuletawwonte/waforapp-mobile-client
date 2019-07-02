@@ -15,12 +15,18 @@ app.config(function($routeProvider) {
 	}).when('/home', {
 		templateUrl: './templates/home.html',
 		controller: 'homeCtrl'
-	}).when('/comment', {
-		templateUrl: './templates/comment.html',
-		controller: 'commentCtrl'
+	}).when('/notice', {
+		templateUrl: './templates/notice.html',
+		controller: 'noticeCtrl'
 	}).when('/forums', {
 		templateUrl: './templates/forums.html',
 		controller: 'forumsCtrl'
+	}).when('/askQuestion', {
+		templateUrl: './templates/askQuestion.html',
+		controller: 'askQuestionCtrl'
+	}).when('/forumDetails', {
+		templateUrl: './templates/forumDetails.html',
+		controller: 'forumDetailsCtrl'
 	}).when('/answer', {
 		templateUrl: './templates/answer.html',
 		controller: 'answerCtrl'
@@ -29,13 +35,24 @@ app.config(function($routeProvider) {
 	})
 });
 
-app.service('userService', function($http, $localStorage) {
+app.service('userService', function($localStorage) {
+	var id;
+	this.setId = function(data) {
+		id = data;
+	}
+
+	this.getId = function() {
+		return id;
+	}
+
 	this.usersignout = function() {
 		delete $localStorage.user;
 	}
+
 	this.setUser = function (data) {
 		$localStorage.user = data;
 	}
+
 	this.getUser = function() {
 		return $localStorage.user;
 	}
@@ -78,6 +95,11 @@ app.controller('homeCtrl', function($scope, $http, $location, userService) {
 		userService.usersignout();
 		$location.path('/');
 	}
+
+	$scope.openNotice = function(nid) {
+		userService.setId(nid);
+		$location.path('/notice');
+	}
 });
 
 app.controller('forumsCtrl', function($scope, $http, $location, userService) {
@@ -94,15 +116,108 @@ app.controller('forumsCtrl', function($scope, $http, $location, userService) {
 	$scope.signout = function() {
 		userService.usersignout();
 		$location.path('/');
+	}
+
+	$scope.openQuestion = function(fid) {
+		userService.setId(fid);
+		$location.path('/forumDetails');
 	}	
+
+});
+
+app.controller('noticeCtrl', function($scope, $http, $location, userService) {
+	$scope.user = userService.getUser();
+
+	var noticeId = userService.getId();
+
+	function getNoticeDetails() {
+		$http({
+			url: 'http://192.168.43.207/users/m_notice',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: 'notice_id='+noticeId
+		}).then(function($response) {
+			$scope.notice = $response.data.notice; 
+			$scope.comments = $response.data.comments; 
+		});
+	}
+
+	getNoticeDetails();
+
+	$scope.comment = function() {
+		var comment_content = $scope.comment_content;
+
+		$http({
+			url: 'http://192.168.43.207/users/m_comment',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: 'comment_content='+comment_content+"&nid="+noticeId+"&user_id="+$scope.user['user_id']
+		}).then(function($response) {
+			getNoticeDetails();
+		});
+	}
+
 });
 
 
+app.controller('askQuestionCtrl', function($scope, $http, $location, userService) {
+	$scope.user = userService.getUser();
 
+	$scope.postForum = function () {
+		var forumQuestion = $scope.forum_question;
 
+		$http({
+			url: 'http://192.168.43.207/users/m_post_question',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: 'forum_question='+forumQuestion+"&user_id="+$scope.user['user_id']
+		}).then(function($response) {
+			$location.path('/forums');
+		});
+	}
+});
 
+app.controller('forumDetailsCtrl', function($scope, $http, $location, userService) {
+	$scope.fid = userService.getId();
+	$scope.user = userService.getUser();
 
+	function getForumDetails() {
+		$http({
+			url: 'http://192.168.43.207/users/m_question_details',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: 'fid='+$scope.fid
+		}).then(function($response) {
+			$scope.forum = $response.data.forum; 
+			$scope.answers = $response.data.answers; 
+		});
+	}
 
+	getForumDetails();
+
+	$scope.postAnswer = function() {
+		var answer_content = $scope.answer_content;
+		$http({
+			url: 'http://192.168.43.207/users/m_answer_forum_question',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: 'fid='+$scope.fid+"&answer_content="+answer_content+"&user_id="+$scope.user['user_id']
+		}).then(function($response) {
+			getForumDetails();
+		});		
+	};
+
+});
 
 
 

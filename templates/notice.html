@@ -71,7 +71,7 @@
           </a>
         </li>
         <li>
-          <a href="#/election">
+          <a href="#/forums">
             <i class="fa fa-archive"></i> <span>Election</span>
           </a>
         </li>
@@ -84,41 +84,63 @@
   <!-- =============================================== -->  
 
 
-
-
-
  <br>
-              <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-12 col-xs-12" >
-                  <!-- <a href="#/home" class="btn btn-warning btn-block">Click here to refresh</a> -->
-                  <div class="box" style="border-radius: 0; padding-top: 8px;">
-                    <div class="box-body">
-                        <!-- Post -->
-                        
-                        <div class="post" ng-repeat="x in notices">
-                          <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{x.avatar}}" alt="user image" />
-                                <span class="username">
-                                  <a href="#">{{x.first_name+' '+x.middle_name}}</a>
-                                </span>
-                            <span class="description">{{x.user_type}} - {{x.date_posted}}</span>
-                          </div>
-                          <!-- /.user-block -->
-                          <a href="" ng-click="openNotice(x.nid)"><h5>{{x.title}}</h5></a>
-                          <p>{{x.content}} </p>
-                        <!-- /.post -->
 
-              </div>
-            </div>
-          </div>
+  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-12 col-xs-12" >
+      <!-- <a href="#/home" class="btn btn-warning btn-block">Click here to refresh</a> -->
+      <div class="box" style="border-radius: 0; padding-top: 8px;">
+        <div class="box-body">
+            <!-- Post -->
 
-<!--           </div>
+                <div class="post">
+                    <div class="user-block">
+                      <img class="img-circle img-bordered-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{notice.avatar}}" alt="user image">
+                          <span class="username">
+                            <a href="">{{notice.first_name+' '+notice.middle_name}}</a>
+                          </span>
+                      <span class="description">{{notice.user_type}} - {{notice.date_posted}}</span>
+                    </div>
+                    <!-- /.user-block -->
+                    <h5><a href="http://192.168.43.207/welcome/notice/6">{{notice.title}}</a></h5>
+                    <p>{{notice.content}}</p>
+
+                    <div class="form-group margin-bottom-none">
+                      <input type="text" name="nid" ng-model="nid" value="{{notice.nid}}" hidden="">
+                      <div class="col-sm-10">
+                        <input class="form-control input-sm" ng-model="comment_content" name="comment_content" placeholder="Comment">
+                      </div>
+                      <div class="col-sm-2">
+                        <button ng-click="comment()" class="btn btn-info pull-right btn-block btn-sm">Comment</button>
+                      </div>
+                    </div>
+                    <hr>
+
+
+                    <div class="direct-chat-msg" ng-repeat="comment in comments">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">{{comment.first_name+' '+comment.middle_name}}</span>
+                        <span class="direct-chat-timestamp pull-right">{{comment.date_commented}}</span>
+                      </div>
+                      <!-- /.direct-chat-info -->
+                      <img class="direct-chat-img" src="http://192.168.43.207/assets/img/profile_pictures/{{comment.avatar}}" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        {{comment.comment_content}}
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+
+
+                </div>            
+        </div>
+     
+      </div>
 
       </section>
-      /.content
-
+      
 
     </div>
   </div>
 
- -->
+
 

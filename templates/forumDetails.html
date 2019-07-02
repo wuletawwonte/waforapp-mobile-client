@@ -1,4 +1,4 @@
-  <header class="main-header">
+ <header class="main-header">
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
@@ -60,7 +60,7 @@
           </a>
         </li>
         <li>
-          <a href="#/election">
+          <a href="#/forums">
             <i class="fa fa-archive"></i> <span>Election</span>
           </a>
         </li>
@@ -73,32 +73,53 @@
   <!-- =============================================== -->  
 
 
-<br>
-<div class="col-md-8 col-sm-8">	        
-  	<div class="box" style="border-radius: 0; padding-top: 8px;">
-  		<div class="box-header">
-  			<h3 class="box-title">Top Questions</h3>
-  		
-				<a href="#/askQuestion" class="btn btn-lg btn-info pull-right">Ask Question</a>        		
-  		</div>
-  		<div class="box-body">
-
-		<ul class="products-list product-list-in-box">
-			<li class="item" ng-repeat="x in forums">
-              <div class="product-img">
-                <a href=""> <img src="http://192.168.43.207/assets/img/default-50x50.gif" class="img img-circle" alt="Product Image" /></a>
-				  </div>
-              <div class="product-info">
-                <a href="" ng-click="openQuestion(x.fid)" class="product-title">{{x.forum_question}}</a>
-                  <span class="product-description pull-right">{{x.date_asked}}</span>
-                <span class="product-description">{{x.first_name+' '+x.middle_name}}</span>
-              </div>
-            </li>
-            <!-- /.item -->
-          </ul>
+ <br>
 
 
-   		</div>
-   	</div>
-</div>
 
+
+
+
+		<div class="box" style="border-radius: 0; padding-top: 8px;">
+      		<div class="box-body">
+                <!-- Post -->
+                <div class="post">
+                  <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="http://192.168.43.207/assets/img/profile_pictures/avatar2.png" alt="user image">
+                        <span class="username">
+                          <a href="">{{forum.first_name+' '+forum.middle_name}}</a>
+                        </span>
+                    <span class="description">{{forum.user_type+' - '+forum.date_asked}}</span>
+                  </div>
+                  <!-- /.user-block -->
+                  <p>{{forum.forum_question}}</p>
+
+                  	<div>
+                      	<input type="text" name="fid" value="5" hidden="">
+                        <img class="img-responsive img-circle img-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{user.avatar}}" alt="Alt Text">
+                        <!-- .img-push is used to add margin to elements next to floating images -->
+                        <div class="img-push">
+                          <input type="text" ng-model="answer_content" class="form-control input-sm" name="answer_content" placeholder="Press enter to post answer">
+                          <button ng-click="postAnswer()" class="btn btn-sm btn-primary">Answer</button>
+                    </div><hr>
+
+
+					<div class="box-footer box-comments" style="">
+		                <div class="box-comment" ng-repeat="answer in answers">
+			                <img class="img-circle img-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{answer.avatar}}" alt="User Image">
+
+			                <div class="comment-text">
+			                      <span class="username">
+			                        {{answer.first_name+' '+answer.middle_name}}
+			                      <span class="text-muted pull-right">{{answer.date_answered}}</span>
+			                      </span><!-- /.username -->
+			                      {{answer.answer_content}}
+			                </div>
+			                <!-- /.comment-text -->
+		                </div>
+		              <!-- /.box-comment -->
+		            </div>
+		            
+			</div>
+		</div>
+	
