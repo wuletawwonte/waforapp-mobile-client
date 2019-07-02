@@ -1,103 +1,36 @@
- <header class="main-header">
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a class="sidebar-toggle" id="sidebar-toggler" data-toggle="push-menu" data-slide="false" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
 
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <li class="dropdown notifications-menu">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-ellipsis-v"></i>
-              <span class="hidden-xs"></span>
-            </a>
-            <ul class="dropdown-menu" style="margin-right: -15px;width: 30px;">
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="" ng-click="signout();">Signout</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
 
-  <!-- =============================================== -->
 
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar" style="padding-top: 50px;">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-    
-      <div class="user-panel" style="height: 150px;background: url('./img/sidebarbg.jpg') no-repeat fixed center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-        <div class="pull-left image" style="height: 45px;">
-          <img ng-src="http://waforapp.wuletaw/assets/img/profile_pictures/{{user.avatar}}" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info" style="color: white;">
-          <p>{{user.name}}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>    
-      <ul class="sidebar-menu">
-        <li> 
-          <a href="#/home">
-            <i class="fa fa-bell"></i> <span>Notice</span>
-          </a>
-        </li>
-        <li>
-          <a href="#/forums">
-            <i class="fa fa-users"></i> <span>Forum</span>
-          </a>
-        </li>
-        <li>
-          <a href="#/election">
-            <i class="fa fa-archive"></i> <span>Election</span>
-          </a>
-        </li>
-
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- =============================================== -->  
-
+	<ng-include src="'templates/header.html'"></ng-include>
 
     <br>
     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-12 col-xs-12" >
 
-		<div class="box" style="border-radius: 0; padding-top: 8px;visibility: hidden;">
+		<div class="box" style="border-radius: 0; padding-top: 8px;">
       		<div class="box-body">
 
 
 
-	          		<?php if(date('Y-m-d') < $election['candidate_selection_start_date']) { ?>           	
-	          			<div class="callout">
+	          		<!-- <?php if(date('Y-m-d') < $election['candidate_selection_start_date']) { ?>           	 -->
+	          			<div class="callout" ng-show="today < election['candidate_selection_start_date']">
 				          <h4>Election!</h4>
-				          <p>Election Process not started yet. The Election candidate selection date is at <?= $election['candidate_selection_start_date']; ?></p>
+				          <p>Election Process not started yet. The Election candidate selection date is at {{election['candidate_selection_start_date']}}</p>
 				        </div> 
 
-	          		<?php } else if(date('Y-m-d') > $election['candidate_selection_start_date'] && date('Y-m-d') < $election['candidate_selection_end_date']) { ?>           		
-						<div class="col-md-12" >
+						<div class="col-md-12" ng-show="today > election['candidate_selection_start_date'] && today < election['candidate_selection_end_date']">
 				          <!-- Widget: user widget style 1 -->
+						  <div class="alert alert-warning" ng-show="message" role="alert">
+							  {{message}}
+						  </div>
+				          
 				          <div class="box box-widget widget-user">
 				            <!-- Add the bg color to the header using any of the bg-* classes -->
-				            <div class="widget-user-header bg-aqua-active" style="background: url('../assets/img/photo6.jpg') center center;">
-				              <h3 class="widget-user-username"><?= $this->session->userdata('name'); ?></h3>
-				              <h5 class="widget-user-desc"><?= $this->session->userdata('user_type'); ?></h5>
+				            <div class="widget-user-header bg-aqua-active" style="background: url('img/photo6.jpg') center center;">
+				              <h3 class="widget-user-username">{{user.name}}</h3>
+				              <h5 class="widget-user-desc">{{user.user_type}}</h5>
 				            </div>
 				            <div class="widget-user-image">
-				              <img class="img-circle" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $this->session->userdata('avatar'); ?>" alt="User Avatar" style="height: 90px;">
+				              <img class="img-circle" src="http://192.168.43.207/assets/img/profile_pictures/{{user.avatar}}" alt="User Avatar" style="height: 90px;">
 				            </div>
 				            <div class="box-footer">
 				              <div class="row">
@@ -111,8 +44,8 @@
 				              <strong> Election</strong><br>
 				              <p class="text-muted">Send Request for becoming Student Council Candidate.</p>
 
-				              <a href="<?php echo base_url(); ?>welcome/request_candidate" class="btn btn-info">Confirm</a>
-				              <a href="<?php echo base_url(); ?>welcome/cancel_request_candidate" class="btn">Cancel</a>
+				              <a href="" class="btn btn-info" ng-click="sendCandidateRequest()">Confirm</a>
+				              <a href="" ng-click="cancelCandidateRequest()" class="btn">Cancel</a>
 
 				            </div>
 				            </div>
@@ -120,99 +53,52 @@
 				          <!-- /.widget-user -->
 				        </div>
 
-	          		<?php } else if(date('Y-m-d') > $election['candidate_selection_end_date'] && date('Y-m-d') < $election['candidate_advertisement_start_date']) { ?>  
-
-	          			<div class="callout">
+	          			<div class="callout" ng-show="today > election['candidate_selection_end_date'] && today < election['candidate_advertisement_start_date']">
 				          <h4>Election!</h4>
-				          <p>Candidate Selection Period is over. The elected Candidates are gonna start advertising on <?= $election['candidate_advertisement_start_date']; ?></p>
+				          <p>Candidate Selection Period is over. The elected Candidates are gonna start advertising on {{election['candidate_advertisement_start_date']}}</p>
 				        </div> 
 
-
-	           		<?php } else if(date('Y-m-d') > $election['candidate_advertisement_start_date'] && date('Y-m-d') < $election['election_start_date']) { ?>
+				        <div ng-show="today > election['candidate_advertisement_start_date'] && today < election['election_start_date']">
+				        	
 	           			  <ul class="users-list clearfix">
-		                  	<?php foreach($candidates as $cndt) { ?>
-		                    <li>
-		                      <img src="<?= base_url(); ?>assets/img/profile_pictures/<?= $cndt['avatar'];?>" alt="User Image">
-		                      <a class="users-list-name" href="#"><?= $cndt['first_name']." ".$cndt['middle_name']; ?></a>
+		                    <li ng-repeat="cndt in candidates">
+		                      <img src="http://192.168.43.207/assets/img/profile_pictures/{{cndt.avatar}}" alt="User Image">
+		                      <a class="users-list-name" href="#">{{cndt.first_name+' '+cndt.middle_name}}</a>
 		                    </li>
-		                    <?php } ?>
 		                  </ul>
 		                  <!-- /.users-list --><hr>
 
-	           			<?php if($is_candidate) {
-	           			?>
+						  <div class="alert alert-warning" ng-show="message" role="alert">
+							  {{message}}
+						  </div>
 
-
-							<form method="POST" action="<?= base_url(); ?>welcome/post_advertisement">
+		           			<div ng-show="is_candidate">
 
 								<div class="form-group">
 				                  <label>Advertisement</label>
-				                  <textarea class="form-control" name="ad_content" rows="3" placeholder="Enter ..."></textarea>
+				                  <textarea class="form-control" ng-model="ad_content" rows="3" placeholder="Enter ..."></textarea>
 				                </div>
-				                <button type="submit" class="btn btn-info">Post</button>
-
-			           		</form>	           			
-
+				                <button ng-click="post_advertisement()" class="btn btn-info">Post</button>
+			           		</div>
 			           		<hr>
-				        <?php }  if(!$advertisements) { echo "No Advertisement posted yet."; } else { 
-				        	foreach($advertisements as $student) { ?>
 
-							<div class="post">
-			                  <div class="user-block">
-			                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>assets/img/profile_pictures/<?= $student['avatar'];?>" alt="user image">
-			                        <span class="username">
-			                          <a href="#"><?= $student['first_name'].' '.$student['middle_name']; ?></a>
-			                        </span>
-			                    <span class="description">Student Council Candidate - <?= $student['ad_date'];?> </span>
-			                  </div>
-			                  <p><?= $student['ad_content']; ?></p>
-			                </div>
-			                <?php } } ?>
+							<div class="alert alert-warning" ng-show="!advertisements" role="alert">
+								  No Advertisement posted yet.
+							</div>
 
-    		           	<div style="text-align: center;"><p><?= $links; ?></p></div>
-	           		<?php } else if(date('Y-m-d') > $election['election_start_date'] && date('Y-m-d') < $election['election_end_date']) { ?>
-	           			<div>
-	           			  <h4>Voting Started: </h4>
-	           			  <ul class="users-list clearfix">
-		                  	<?php foreach($candidates as $cndt) { ?>
-		                    <li>
-		                      <img src="<?= base_url(); ?>assets/img/profile_pictures/<?= $cndt['avatar'];?>" alt="User Image">
-		                      <a class="users-list-name" href=""><?= $cndt['first_name']." ".$cndt['middle_name']; ?></a>
-		                      <p>Vote Count: <?= $cndt['vote_count']; ?></p>
-		                      <a href="<?= base_url(); ?>welcome/vote_send/<?= $cndt['id']; ?>" class="btn btn-sm btn-info">Vote</a>
-		                    </li>
-		                    <?php } ?>
-		                  </ul><hr>
-		                </div>
-		            <?php } else if(date('Y-m-d') > $election['election_end_date']) {?>
-
-
-	           			  <h4>Elected Student Councils: </h4>
-	           			  <ul class="users-list clearfix">
-		                  	<?php foreach($student_councils as $cndt) { ?>
-		                    <li>
-		                      <img src="<?= base_url(); ?>assets/img/profile_pictures/<?= $cndt['avatar'];?>" alt="User Image">
-		                      <a class="users-list-name" href=""><?= $cndt['first_name']." ".$cndt['middle_name']; ?></a>
-		                      <p>Vote Count: <?= $cndt['vote_count']; ?></p>
-		                    </li>
-		                    <?php } ?>
-		                  </ul><hr>
-
-
-		            <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
+				        	<div ng-show="advertisements">
+								<div class="post" ng-repeat="student in advertisements">
+				                  <div class="user-block">
+				                    <img class="img-circle img-bordered-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{student.avatar}}" alt="user image">
+				                        <span class="username">
+				                          <a href="">{{student.first_name+' '+student.middle_name}}</a>
+				                        </span>
+				                    <span class="description">Student Council Candidate - {{student.ad_date}} </span>
+				                  </div>
+				                  <p>{{student.ad_content}}</p>
+				                </div>
+				            </div>
+				        </div>
 
 
 

@@ -1,83 +1,9 @@
- <header class="main-header">
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a class="sidebar-toggle" id="sidebar-toggler" data-toggle="push-menu" data-slide="false" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
 
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <li class="dropdown notifications-menu">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-ellipsis-v"></i>
-              <span class="hidden-xs"></span>
-            </a>
-            <ul class="dropdown-menu" style="margin-right: -15px;width: 30px;">
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="" ng-click="signout();">Signout</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
 
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar" style="padding-top: 50px;">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-    
-      <div class="user-panel" style="height: 150px;background: url('./img/sidebarbg.jpg') no-repeat fixed center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-        <div class="pull-left image" style="height: 45px;">
-          <img ng-src="http://waforapp.wuletaw/assets/img/profile_pictures/{{user.avatar}}" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info" style="color: white;">
-          <p>{{user.name}}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>    
-      <ul class="sidebar-menu">
-        <li> 
-          <a href="#/home">
-            <i class="fa fa-bell"></i> <span>Notice</span>
-          </a>
-        </li>
-        <li>
-          <a href="#/forums">
-            <i class="fa fa-users"></i> <span>Forum</span>
-          </a>
-        </li>
-        <li>
-          <a href="#/election">
-            <i class="fa fa-archive"></i> <span>Election</span>
-          </a>
-        </li>
-
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- =============================================== -->  
+  <ng-include src="'templates/header.html'"></ng-include>
 
 
  <br>
-
-
-
-
 
 
 		<div class="box" style="border-radius: 0; padding-top: 8px;">
@@ -85,7 +11,7 @@
                 <!-- Post -->
                 <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="http://waforapp.wuletaw/assets/img/profile_pictures/avatar2.png" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="http://192.168.43.207/assets/img/profile_pictures/avatar2.png" alt="user image">
                         <span class="username">
                           <a href="">{{forum.first_name+' '+forum.middle_name}}</a>
                         </span>
@@ -96,7 +22,7 @@
 
                   	<div>
                       	<input type="text" name="fid" value="5" hidden="">
-                        <img class="img-responsive img-circle img-sm" src="http://waforapp.wuletaw/assets/img/profile_pictures/{{user.avatar}}" alt="Alt Text">
+                        <img class="img-responsive img-circle img-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{user.avatar}}" alt="Alt Text">
                         <!-- .img-push is used to add margin to elements next to floating images -->
                         <div class="img-push">
                           <input type="text" ng-model="answer_content" class="form-control input-sm" name="answer_content" placeholder="Press enter to post answer">
@@ -106,7 +32,7 @@
 
 					<div class="box-footer box-comments" style="">
 		                <div class="box-comment" ng-repeat="answer in answers">
-			                <img class="img-circle img-sm" src="http://waforapp.wuletaw/assets/img/profile_pictures/{{answer.avatar}}" alt="User Image">
+			                <img class="img-circle img-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{answer.avatar}}" alt="User Image">
 
 			                <div class="comment-text">
 			                      <span class="username">
