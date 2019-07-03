@@ -100,6 +100,32 @@
 				            </div>
 				        </div>
 
+				        <div ng-show="today > election['election_start_date'] && today < election['election_end_date']">
+						  <div class="alert alert-warning" ng-show="message" role="alert">
+							  {{message}}
+						  </div>
+
+	           			  <h4>Voting Started: </h4>
+	           			  <ul class="users-list clearfix">
+		                    <li ng-repeat="cndt in candidates">
+		                      <img src="http://192.168.43.207/assets/img/profile_pictures/{{cndt['avatar']}}" alt="User Image">
+		                      <a class="users-list-name" href="">{{cndt['first_name']+" "+cndt['middle_name']}}</a>
+		                      <p>Vote Count: {{cndt['vote_count']}}</p>
+		                      <a href="" ng-click="voteSend(cndt['id'])" class="btn btn-sm btn-info">Vote</a>
+		                    </li>
+		                  </ul><hr>
+		                </div>
+
+		            	<div ng-show="today > election['election_end_date']">
+	           			  <h4>Elected Student Councils: </h4>
+	           			  <ul class="users-list clearfix">
+		                    <li ng-repeat="cndt in student_councils">
+		                      <img src="http://192.168.43.207/assets/img/profile_pictures/{{cndt.avatar}}" alt="User Image">
+		                      <a class="users-list-name" href="">{{cndt['first_name']+" "+cndt['middle_name']}}</a>
+		                      <p ng-show="cndt['vote_count']">Vote Count: {{cndt['vote_count']}}</p>
+		                    </li>
+		                  </ul><hr>
+		                </div>
 
 
 		            

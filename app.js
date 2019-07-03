@@ -82,6 +82,7 @@ app.controller('loginCtrl', function($scope, $location, $http, userService) {
 
 app.controller('homeCtrl', function($scope, $http, $location, userService) {
 	$scope.user = userService.getUser();
+
 	$http({
 		url: 'http://192.168.43.207/users/m_notices',
 		method: 'POST',
@@ -91,6 +92,21 @@ app.controller('homeCtrl', function($scope, $http, $location, userService) {
 	}).then(function($response) {
 		$scope.notices = $response.data;
 	});
+
+	$scope.searchNotices = function () {
+		var key = $scope.notice_key;		
+		$http({
+			url: 'http://192.168.43.207/users/m_notices',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: "notice_key="+key
+		}).then(function($response) {
+			$scope.notices = $response.data;
+		});		
+	}
+
 	$scope.signout = function() {
 		userService.usersignout();
 		$location.path('/');
@@ -116,6 +132,20 @@ app.controller('forumsCtrl', function($scope, $http, $location, userService) {
 	$scope.signout = function() {
 		userService.usersignout();
 		$location.path('/');
+	}
+
+	$scope.searchForums = function () {
+		var key = $scope.notice_key;
+		$http({
+			url: 'http://192.168.43.207/users/m_forums',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: "notice_key="+key
+		}).then(function($response) {
+			$scope.forums = $response.data;
+		});			
 	}
 
 	$scope.openQuestion = function(fid) {
@@ -250,6 +280,7 @@ app.controller('electionCtrl', function($scope, $location, $http, userService) {
 			$scope.candidates = $response.data.candidates;
 			$scope.is_candidate = $response.data.is_candidate;
 			$scope.advertisements = $response.data.advertisements;
+			$scope.student_councils = $response.data.student_councils;
 		});	
 	}
 
@@ -296,6 +327,19 @@ app.controller('electionCtrl', function($scope, $location, $http, userService) {
 		});								
 	}
 
+	$scope.voteSend = function(cid) {
+		$http({
+			url: 'http://192.168.43.207/users/m_vote_send',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: 'user_id='+$scope.user['user_id']+"&cid="+cid
+		}).then(function($response) {
+			$scope.message = $response.data.message;
+			get_ads();
+		});										
+	}
 
 	$scope.signout = function() {
 		userService.usersignout();

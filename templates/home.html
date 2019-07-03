@@ -2,13 +2,25 @@
 
   <ng-include src="'templates/header.html'"></ng-include>
 
-
- <br>
+<br>
               <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-12 col-xs-12" >
+
+
+
                   <!-- <a href="#/home" class="btn btn-warning btn-block">Click here to refresh</a> -->
                   <div class="box" style="border-radius: 0; padding-top: 8px;">
-                    <div class="box-body">
+                    <div class="box-body" style="padding-top: 0;">
                         <!-- Post -->
+
+
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="input-group input-group-md gorm-group">
+                              <input type="text" ng-model="notice_key" class="form-control" placeholder="Search">
+                                  <span class="input-group-btn">
+                                    <button ng-click="searchNotices()" class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                                  </span>
+                            </div>          
+                        </form><hr>
                         
                         <div class="post" ng-repeat="x in notices">
                           <div class="user-block">

@@ -3,6 +3,9 @@
 
 <br>
 <div class="col-md-8 col-sm-8">	        
+
+
+
   	<div class="box" style="border-radius: 0; padding-top: 8px;">
   		<div class="box-header">
   			<h3 class="box-title">Top Questions</h3>
@@ -10,6 +13,16 @@
 				<a href="#/askQuestion" class="btn btn-lg btn-info pull-right">Ask Question</a>        		
   		</div>
   		<div class="box-body">
+
+    <form class="navbar-form navbar-left" role="search">
+        <div class="input-group input-group-md gorm-group">
+          <input type="text" ng-model="notice_key" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button ng-click="searchForums()" class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+        </div>          
+    </form>
+
 
 		<ul class="products-list product-list-in-box">
 			<li class="item" ng-repeat="x in forums">
