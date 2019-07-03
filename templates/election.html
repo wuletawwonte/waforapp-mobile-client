@@ -30,7 +30,7 @@
 				              <h5 class="widget-user-desc">{{user.user_type}}</h5>
 				            </div>
 				            <div class="widget-user-image">
-				              <img class="img-circle" src="http://192.168.43.207/assets/img/profile_pictures/{{user.avatar}}" alt="User Avatar" style="height: 90px;">
+				              <img class="img-circle" src="http://waforapp.wuletaw/assets/img/profile_pictures/{{user.avatar}}" alt="User Avatar" style="height: 90px;">
 				            </div>
 				            <div class="box-footer">
 				              <div class="row">
@@ -62,7 +62,7 @@
 				        	
 	           			  <ul class="users-list clearfix">
 		                    <li ng-repeat="cndt in candidates">
-		                      <img src="http://192.168.43.207/assets/img/profile_pictures/{{cndt.avatar}}" alt="User Image">
+		                      <img src="http://waforapp.wuletaw/assets/img/profile_pictures/{{cndt.avatar}}" alt="User Image">
 		                      <a class="users-list-name" href="#">{{cndt.first_name+' '+cndt.middle_name}}</a>
 		                    </li>
 		                  </ul>
@@ -89,7 +89,7 @@
 				        	<div ng-show="advertisements">
 								<div class="post" ng-repeat="student in advertisements">
 				                  <div class="user-block">
-				                    <img class="img-circle img-bordered-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{student.avatar}}" alt="user image">
+				                    <img class="img-circle img-bordered-sm" src="http://waforapp.wuletaw/assets/img/profile_pictures/{{student.avatar}}" alt="user image">
 				                        <span class="username">
 				                          <a href="">{{student.first_name+' '+student.middle_name}}</a>
 				                        </span>
@@ -108,7 +108,7 @@
 	           			  <h4>Voting Started: </h4>
 	           			  <ul class="users-list clearfix">
 		                    <li ng-repeat="cndt in candidates">
-		                      <img src="http://192.168.43.207/assets/img/profile_pictures/{{cndt['avatar']}}" alt="User Image">
+		                      <img src="http://waforapp.wuletaw/assets/img/profile_pictures/{{cndt['avatar']}}" alt="User Image">
 		                      <a class="users-list-name" href="">{{cndt['first_name']+" "+cndt['middle_name']}}</a>
 		                      <p>Vote Count: {{cndt['vote_count']}}</p>
 		                      <a href="" ng-click="voteSend(cndt['id'])" class="btn btn-sm btn-info">Vote</a>
@@ -120,7 +120,7 @@
 	           			  <h4>Elected Student Councils: </h4>
 	           			  <ul class="users-list clearfix">
 		                    <li ng-repeat="cndt in student_councils">
-		                      <img src="http://192.168.43.207/assets/img/profile_pictures/{{cndt.avatar}}" alt="User Image">
+		                      <img src="http://waforapp.wuletaw/assets/img/profile_pictures/{{cndt.avatar}}" alt="User Image">
 		                      <a class="users-list-name" href="">{{cndt['first_name']+" "+cndt['middle_name']}}</a>
 		                      <p ng-show="cndt['vote_count']">Vote Count: {{cndt['vote_count']}}</p>
 		                    </li>

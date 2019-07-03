@@ -22,20 +22,21 @@
                             </div>          
                         </form><hr>
                         
-                        <div class="post" ng-repeat="x in notices">
-                          <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="http://192.168.43.207/assets/img/profile_pictures/{{x.avatar}}" alt="user image" />
-                                <span class="username">
-                                  <a href="#">{{x.first_name+' '+x.middle_name}}</a>
-                                </span>
-                            <span class="description">{{x.user_type}} - {{x.date_posted}}</span>
-                          </div>
-                          <!-- /.user-block -->
-                          <a href="" ng-click="openNotice(x.nid)"><h5>{{x.title}}</h5></a>
-                          <p>{{x.content}} </p>
-                        <!-- /.post -->
-
-              </div>
+                        <div pull-to-refresh="onReload()">
+                            <div class="post" ng-repeat="x in notices" ng-bind="x">
+                              <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="http://waforapp.wuletaw/assets/img/profile_pictures/{{x.avatar}}" alt="user image" />
+                                    <span class="username">
+                                      <a href="#">{{x.first_name+' '+x.middle_name}}</a>
+                                    </span>
+                                <span class="description">{{x.user_type}} - {{x.date_posted}}</span>
+                              </div>
+                              <!-- /.user-block -->
+                              <a href="" ng-click="openNotice(x.nid)"><h5>{{x.title}}</h5></a>
+                              <p>{{x.content}} </p>
+                            <!-- /.post -->
+                            </div>
+                        </div>
             </div>
           </div>
 
